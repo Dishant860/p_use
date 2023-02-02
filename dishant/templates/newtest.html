@@ -1,0 +1,81 @@
+{% extends 'index.html' %}
+{% block title %}Gold | {% endblock title %}
+{% block body %}
+<link rel="stylesheet" href="/static/css/newtest.css">
+
+<div class="main">
+    <div class="left">
+        <form class="frm" method="post" action="{% url 'jecalc'%}">
+            {% csrf_token %}
+
+            <label for="sel">Select Ornaments :</label>
+
+            <select name="sel" id="sel">
+                <option value="">None</option>
+                <option value="Ring">Ring</option>
+                <option value="Bracelet">Bracelet</option>
+                <option value="Necklace">Necklace</option>
+                <option value="Earring">Earring</option>
+            </select><br><br>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Price</label>
+                <input type="number" step="any" class="form-control" id="exampleFormControlInput1"
+                    placeholder="Enter current gold price per gram" name="price" required>
+            </div>
+
+            <div class="mb-3">
+                <label for="exampleFormControlInput1" class="form-label">Weight</label>
+                <input type="number" step="any" class="form-control" id="exampleFormControlInput1"
+                    placeholder="Enter weight of ornaments in gram" name="weight" required>
+            </div>
+
+
+            <input type="submit" class="btn btn-outline-primary" value="Add">
+        </form>
+
+        <form class="bill" method="post" action="{% url 'billdata' %}">
+            {% csrf_token %}
+            <input type="submit" class="btn btn-outline-primary" value="Bill">
+        </form>
+
+        <br>
+    </div>
+    <div class="right">
+        <table border="1px" class="table table-hover">
+            <tr>
+                <th>Ornaments Name</th>
+                <th>Gold Price</th>
+                <th>Item Weight</th>
+                <th>Labour charge</th>
+                <th>Total</th>
+                <th>
+
+                    <a href="vdata">Clear All</a>
+
+                </th>
+
+            </tr>
+            {% for i in bdata %}
+            <tr>
+                <td>{{i.sel}}</td>
+                <td>{{i.price}}</td>
+                <td>{{i.weight}}</td>
+                <td>{{i.labour}}</td>
+                <td>{{i.total}}</td>
+                <td><a href="dele/{{ i.id }}">delete</a></td>
+            </tr>
+            {% endfor %}
+            <tr>
+                <td colspan="5" align="right"> Sub Total : {{gtotal.gtotaldata}} </td>
+            </tr>
+
+        </table>
+        <br>
+        <br>
+    </div>
+
+
+</div>
+
+{% endblock body %}
