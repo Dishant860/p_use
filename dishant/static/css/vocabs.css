@@ -1,0 +1,16 @@
+* {
+    user-select: none;
+}
+
+.mb-3 {
+    width: 25%;
+    margin: 40px;
+}
+
+#check{
+    margin-left: 40px;
+}
+#hintbtn{
+    margin-left: 40px;
+    margin-top: 20px;
+}

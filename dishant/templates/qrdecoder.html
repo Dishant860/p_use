@@ -1,0 +1,21 @@
+{% extends 'index.html' %}
+{% block title %}QRdecoder | {% endblock title %}
+{% block body %}
+
+
+
+<form  method="post" action="{% url 'decodefun' %}">
+    {% csrf_token %}
+<div class="mb-3">
+    <label for="exampleFormControlInput1" class="form-label">Customer ID : </label>
+    <input type="number" step="any" class="form-control" id="exampleFormControlInput1"
+        placeholder="Enter customer ID here" name="cusidinput" required>
+</div>
+<input type="submit" class="btn btn-outline-success" value="Decode">
+    
+</form>
+{{display_decode}}
+
+
+
+{% endblock body %}
